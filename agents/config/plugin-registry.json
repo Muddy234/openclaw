@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Plugin registry for Financial GPS AI Agents",
+  "version": "1.0.0",
+
+  "plugins": {
+    "frontend-design": {
+      "source": "anthropic/claude-code",
+      "path": "plugins/frontend-design",
+      "version": "latest",
+      "agent": "Frontend Architect",
+      "description": "Distinctive, production-grade frontend interfaces",
+      "skills": ["frontend-design"],
+      "installCommand": "claude plugins install frontend-design"
+    },
+
+    "security-guidance": {
+      "source": "ComposioHQ/awesome-claude-plugins",
+      "path": "plugins/security-guidance",
+      "version": "latest",
+      "agent": "Security Analyst",
+      "description": "OWASP guidelines and secure coding practices",
+      "skills": ["security-guidance"],
+      "installCommand": "claude plugins install security-guidance"
+    },
+
+    "audit-project": {
+      "source": "ComposioHQ/awesome-claude-plugins",
+      "path": "plugins/audit-project",
+      "version": "latest",
+      "agent": "Security Analyst",
+      "description": "Comprehensive code audits",
+      "skills": ["audit-project"],
+      "installCommand": "claude plugins install audit-project"
+    },
+
+    "senior-frontend": {
+      "source": "ComposioHQ/awesome-claude-plugins",
+      "path": "plugins/senior-frontend",
+      "version": "latest",
+      "agent": "Frontend Architect",
+      "description": "React/Next.js patterns with accessibility",
+      "skills": ["senior-frontend"],
+      "installCommand": "claude plugins install senior-frontend"
+    },
+
+    "changelog-generator": {
+      "source": "ComposioHQ/awesome-claude-plugins",
+      "path": "plugins/changelog-generator",
+      "version": "latest",
+      "agent": "Product Manager",
+      "description": "Transform commits into release notes",
+      "skills": ["changelog-generator"],
+      "installCommand": "claude plugins install changelog-generator"
+    },
+
+    "documentation-generator": {
+      "source": "ComposioHQ/awesome-claude-plugins",
+      "path": "plugins/documentation-generator",
+      "version": "latest",
+      "agent": "Product Manager",
+      "description": "Generate READMEs and API docs",
+      "skills": ["documentation-generator"],
+      "installCommand": "claude plugins install documentation-generator"
+    },
+
+    "test-writer-fixer": {
+      "source": "ComposioHQ/awesome-claude-plugins",
+      "path": "plugins/test-writer-fixer",
+      "version": "latest",
+      "agent": "Frontend Architect",
+      "description": "Test writing and fixing support",
+      "skills": ["test-writer-fixer"],
+      "installCommand": "claude plugins install test-writer-fixer"
+    }
+  },
+
+  "superpowers": {
+    "source": "obra/superpowers",
+    "repository": "https://github.com/obra/superpowers",
+    "skills": {
+      "brainstorming": {
+        "agent": "Product Manager",
+        "description": "Socratic design refinement"
+      },
+      "writing-plans": {
+        "agent": "Product Manager",
+        "description": "Detailed implementation plans"
+      },
+      "executing-plans": {
+        "agent": "Product Manager",
+        "description": "Batch execution with checkpoints"
+      },
+      "dispatching-parallel-agents": {
+        "agent": "Product Manager",
+        "description": "Concurrent subagent workflows"
+      },
+      "test-driven-development": {
+        "agent": "Frontend Architect",
+        "description": "RED-GREEN-REFACTOR cycle"
+      },
+      "systematic-debugging": {
+        "agent": "Frontend Architect",
+        "description": "4-phase root cause analysis"
+      },
+      "verification-before-completion": {
+        "agent": "Security Analyst",
+        "description": "Validates fixes are resolved"
+      },
+      "requesting-code-review": {
+        "agent": "Frontend Architect",
+        "description": "Pre-review assessment"
+      },
+      "receiving-code-review": {
+        "agent": "Frontend Architect",
+        "description": "Feedback incorporation"
+      },
+      "subagent-driven-development": {
+        "agent": "Security Analyst",
+        "description": "Two-stage review process"
+      }
+    },
+    "installCommand": "git clone https://github.com/obra/superpowers.git .claude/superpowers"
+  },
+
+  "customSkills": {
+    "accessibility-testing": {
+      "path": "agents/skills/accessibility-testing.md",
+      "agent": "Frontend Architect",
+      "description": "WCAG 2.1 AA compliance testing",
+      "triggers": ["accessibility", "a11y", "WCAG", "screen reader"]
+    },
+    "financial-calculations-validation": {
+      "path": "agents/skills/financial-calculations-validation.md",
+      "agent": "Compliance Reviewer",
+      "description": "Financial formula verification",
+      "triggers": ["calculator", "projection", "validation"]
+    },
+    "seo-performance": {
+      "path": "agents/skills/seo-performance.md",
+      "agent": "Frontend Architect",
+      "description": "SEO and Core Web Vitals optimization",
+      "triggers": ["SEO", "performance", "Core Web Vitals", "Lighthouse"]
+    },
+    "content-compliance-review": {
+      "path": "agents/skills/content-compliance-review.md",
+      "agent": "Compliance Reviewer",
+      "description": "Automated disclaimer and compliance checking",
+      "triggers": ["disclaimer", "compliance", "content review"]
+    }
+  },
+
+  "agentPluginAssignments": {
+    "Product Manager": {
+      "plugins": ["changelog-generator", "documentation-generator"],
+      "superpowers": ["brainstorming", "writing-plans", "executing-plans", "dispatching-parallel-agents"],
+      "customSkills": []
+    },
+    "Frontend Architect": {
+      "plugins": ["frontend-design", "senior-frontend", "test-writer-fixer"],
+      "superpowers": ["test-driven-development", "systematic-debugging", "requesting-code-review", "receiving-code-review"],
+      "customSkills": ["accessibility-testing", "seo-performance"]
+    },
+    "Security Analyst": {
+      "plugins": ["security-guidance", "audit-project"],
+      "superpowers": ["verification-before-completion", "subagent-driven-development"],
+      "customSkills": []
+    },
+    "Compliance Reviewer": {
+      "plugins": [],
+      "superpowers": [],
+      "customSkills": ["financial-calculations-validation", "content-compliance-review"]
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "MCP Server configuration for Financial GPS AI Agents",
+  "version": "1.0.0",
+
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-filesystem"],
+      "env": {
+        "ALLOWED_PATHS": "${workspaceFolder}"
+      },
+      "description": "Read/write access to project files",
+      "usedBy": ["all"]
+    },
+
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-github"],
+      "env": {
+        "GITHUB_TOKEN": "${env:GITHUB_TOKEN}"
+      },
+      "description": "GitHub integration for PRs, issues, and code review",
+      "usedBy": ["Product Manager", "Frontend Architect", "Security Analyst"]
+    },
+
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-playwright"],
+      "description": "Browser automation for testing and screenshots",
+      "usedBy": ["Frontend Architect"],
+      "capabilities": [
+        "End-to-end testing",
+        "Visual regression testing",
+        "Accessibility testing automation",
+        "Cross-browser testing"
+      ]
+    },
+
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-memory"],
+      "description": "Persistent memory across sessions",
+      "usedBy": ["all"],
+      "capabilities": [
+        "Store project context",
+        "Remember decisions",
+        "Track progress across sessions"
+      ]
+    },
+
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-sequential-thinking"],
+      "description": "Complex reasoning and planning",
+      "usedBy": ["Product Manager"],
+      "capabilities": [
+        "Feature prioritization",
+        "Architecture decisions",
+        "Multi-step planning"
+      ]
+    }
+  },
+
+  "agentMcpAssignments": {
+    "Product Manager": {
+      "required": ["filesystem", "github", "memory", "sequential-thinking"],
+      "optional": []
+    },
+    "Frontend Architect": {
+      "required": ["filesystem", "github", "playwright"],
+      "optional": ["memory"]
+    },
+    "Security Analyst": {
+      "required": ["filesystem", "github"],
+      "optional": ["memory"]
+    },
+    "Compliance Reviewer": {
+      "required": ["filesystem"],
+      "optional": ["memory"]
+    }
+  },
+
+  "notes": {
+    "installation": "Run 'npm install' in project root to install MCP server dependencies",
+    "authentication": "Set GITHUB_TOKEN environment variable for GitHub integration",
+    "customization": "Add additional MCP servers as needed for your workflow"
+  }
+}
